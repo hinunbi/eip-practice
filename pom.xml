@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.brm</groupId>
+	<artifactId>eip-practice</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<organization>
+		<name>바른모</name>
+		<url>http://www.barunmo.com</url>
+	</organization>
+
+	<packaging>pom</packaging>
+	<name>EIPs Practice</name>
+	<description>기업 통합 패턴(Enterprise Integration Patterns) 연습</description>
+	<url>https://github.com/hinunbi/eip-practice</url>
+
+	<properties>
+		<camel-version>2.12.0</camel-version>
+		<log4j-version>1.2.14</log4j-version>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>ToConsole</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.apache.camel</groupId>
+					<artifactId>camel-stream</artifactId>
+					<version>${camel-version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>ToLog</id>
+		</profile>
+
+		<profile>
+			<id>ToMail</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.apache.camel</groupId>
+					<artifactId>camel-mail</artifactId>
+					<version>${camel-version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>ToTwitter</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.apache.camel</groupId>
+					<artifactId>camel-twitter</artifactId>
+					<version>${camel-version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-spring</artifactId>
+			<version>${camel-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.5</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+
+</project>
