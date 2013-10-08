@@ -13,10 +13,10 @@
 				<constant>test</constant>
 			</setHeader>
 			<setHeader headerName="To">
-				<constant>hinunbi@barunmo.com</constant>
+				<constant>testuser@barunmo.com</constant>
 			</setHeader>
 			<setHeader headerName="From">
-				<constant>hinunbi@barunmo.com</constant>
+				<constant>testuser@barunmo.com</constant>
 			</setHeader>
 
 			<to uri="smtp:barunmo.com?username=testuser&amp;password=testpassword" />

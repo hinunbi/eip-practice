@@ -1,6 +1,5 @@
 package camel.example.hello;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.camel.ProducerTemplate;
@@ -17,7 +16,7 @@ public class ToTwitter {
 
 		// Camel 컨텍스트 실행
 		main.start();
-		// Camel 인터페이스 객체 획득
+		// Camel 생산자(발신자) 객체 획득
 		ProducerTemplate producer = main.getCamelTemplate();
 		// 메시지 발신
 		producer.requestBody("direct:start",  "Hello World! at " + new Date());
