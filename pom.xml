@@ -13,7 +13,6 @@
 		<url>http://www.barunmo.com</url>
 	</organization>
 
-	<packaging>pom</packaging>
 	<name>EIPs Practice</name>
 	<description>기업 통합 패턴(Enterprise Integration Patterns) 연습</description>
 	<url>https://github.com/hinunbi/eip-practice</url>
@@ -33,13 +32,79 @@
 					<version>${camel-version}</version>
 				</dependency>
 			</dependencies>
+			<activation>
+				<property>
+					<name>ToConsole</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.2.1</version>
+						<configuration>
+							<executable>java</executable>
+							<arguments>
+								<argument>-classpath</argument>
+								<classpath />
+								<argument>camel.example.hello.ToConsole</argument>
+							</arguments>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 		<profile>
 			<id>ToLog</id>
+			<activation>
+				<property>
+					<name>ToLog</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.2.1</version>
+						<configuration>
+							<executable>java</executable>
+							<arguments>
+								<argument>-classpath</argument>
+								<classpath />
+								<argument>camel.example.hello.ToLog</argument>
+							</arguments>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 
 		<profile>
 			<id>ToMail</id>
+			<activation>
+				<property>
+					<name>ToMail</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.2.1</version>
+						<configuration>
+							<executable>java</executable>
+							<arguments>
+								<argument>-classpath</argument>
+								<classpath />
+								<argument>camel.example.hello.ToMail</argument>
+							</arguments>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
 			<dependencies>
 				<dependency>
 					<groupId>org.apache.camel</groupId>
@@ -50,6 +115,28 @@
 		</profile>
 		<profile>
 			<id>ToTwitter</id>
+			<activation>
+				<property>
+					<name>ToTwitter</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.2.1</version>
+						<configuration>
+							<executable>java</executable>
+							<arguments>
+								<argument>-classpath</argument>
+								<classpath />
+								<argument>camel.example.hello.ToTwitter</argument>
+							</arguments>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
 			<dependencies>
 				<dependency>
 					<groupId>org.apache.camel</groupId>
@@ -60,6 +147,7 @@
 		</profile>
 	</profiles>
 
+	<!-- 공통 의존 -->
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.camel</groupId>

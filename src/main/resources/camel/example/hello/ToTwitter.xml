@@ -6,9 +6,9 @@
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
 	<bean id="twitter" class="org.apache.camel.component.twitter.TwitterComponent">
-		<property name="consumerKey" value="consumerKey" />
+		<property name="consumerKey" value="*******************************************" />
 		<property name="consumerSecret" value="*******************************************" />
-		<property name="accessToken" value="accessToken" />
+		<property name="accessToken" value="*******************************************" />
 		<property name="accessTokenSecret" value="******************************************" />
 	</bean>
 

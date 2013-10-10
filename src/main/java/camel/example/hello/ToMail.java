@@ -19,7 +19,7 @@ public class ToMail {
 		// Camel 생산자(발신자) 객체 획득
 		ProducerTemplate producer = main.getCamelTemplate();
 		// 메시지 발신
-		producer.requestBody("direct:start",  "Hello World! at " + new Date());
+		producer.requestBody("direct:start",  "Hello, world! at " + new Date());
 		// Camel 컨텍스트 종료
 		main.stop();
 
