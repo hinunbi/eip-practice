@@ -145,6 +145,50 @@
 				</dependency>
 			</dependencies>
 		</profile>
+		<profile>
+			<id>ToMessage</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.apache.camel</groupId>
+					<artifactId>camel-beanio</artifactId>
+					<version>${camel-version}</version>
+				</dependency>
+				<dependency>
+					<groupId>commons-lang</groupId>
+					<artifactId>commons-lang</artifactId>
+					<version>2.6</version>
+					<type>jar</type>
+					<scope>compile</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.camel</groupId>
+					<artifactId>camel-stream</artifactId>
+					<version>${camel-version}</version>
+				</dependency>
+			</dependencies>
+			<activation>
+				<property>
+					<name>ToMessage</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.2.1</version>
+						<configuration>
+							<executable>java</executable>
+							<arguments>
+								<argument>-classpath</argument>
+								<classpath />
+								<argument>camel.example.beanio.ToMessage</argument>
+							</arguments>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 
 	<!-- 공통 의존 -->
@@ -161,6 +205,8 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
+
+
 	</dependencies>
 
 </project>

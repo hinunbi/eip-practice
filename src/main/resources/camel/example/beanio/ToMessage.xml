@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+	<bean id="service0200200101" class="camel.example.beanio.Service0200200101" />
+
+	<camelContext xmlns="http://camel.apache.org/schema/spring">
+		<dataFormats>
+			<beanio id="Msg0200200101" mapping="camel/example/beanio/mapping.xml" streamName="Msg0200200101" />
+			<beanio id="Msg0210200101" mapping="camel/example/beanio/mapping.xml" streamName="Msg0210200101" />
+		</dataFormats>
+
+		<route id="toServer">
+			<from uri="direct:toserver" />
+			<marshal ref="Msg0200200101" />
+			<!-- 요청 메시지 화면 출력 -->
+			<to uri="stream:out" />
+			<to uri="direct:server" />
+		</route>
+
+		<route id="Server">
+			<from uri="direct:server" />
+			<unmarshal ref="Msg0200200101" />
+			<transform>
+				<simple>body[0]</simple>
+			</transform>
+			<bean ref="service0200200101" method="process" />
+			<marshal ref="Msg0210200101" />
+			<!-- 응답 메시지 화면 출력 -->
+			<to uri="stream:out" />
+			<to uri="direct:toclient" />
+		</route>
+
+		<route id="toClient">
+			<from uri="direct:toclient" />
+			<unmarshal ref="Msg0210200101" />
+			<transform>
+				<simple>body[0]</simple>
+			</transform>
+		</route>
+
+	</camelContext>
+
+</beans>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beanio xmlns="http://www.beanio.org/2012/03" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.beanio.org/2011/01 http://www.beanio.org/2011/01/mapping.xsd">
+
+	<!-- 필드 템플릿 -->
+	<template name="header">
+		<field name="전문길이" length="4" padding="0" justify="right" />
+		<field name="트랜잭션코드" length="6" />
+		<field name="전문종별코드" length="4" />
+		<field name="거래구분코드" length="6" />
+		<field name="테스트구분" length="1" />
+		<field name="송수신코드" length="1" />
+		<field name="미통지존재여부" length="1" />
+		<field name="응답코드" length="4" />
+		<field name="요구기관코드" length="5" />
+		<field name="기준일자" length="8" type="date" format="yyyyMMdd" />
+		<field name="전문일련번호" length="8" padding="0" justify="right" />
+		<field name="업무일련번호" length="8" padding="0" justify="right" />
+		<field name="응답기관코드" length="5" />
+		<field name="전문전송일자" length="8" type="date" format="yyyyMMdd" />
+		<field name="전문전송시간" length="6" type="time" format="HHmmss" />
+		<field name="세션정보" length="5" padding="0" justify="right" />
+		<field name="센터예비필드" length="15" />
+		<field name="기관예비필드" length="20" />
+	</template>
+
+	<!-- 인증 요청 메시지 -->
+	<stream name="Msg0200200101" format="fixedlength">
+		<record name="header" class="camel.example.beanio.message.Msg0200200101" minOccurs="1" maxOccurs="1">
+			<!-- 공통 정보부 -->
+			<segment name="header" template="header" class="camel.example.beanio.message.Header" />
+			<!-- 업무 공통부 -->
+			<segment name="bodyCommon" class="camel.example.beanio.message.BodyCommon">
+				<field name="OTP인증벤더코드" length="3" />
+				<field name="사용자식별코드" length="40" />
+				<field name="OTP일련번호" length="12" />
+			</segment>
+			<!-- 업무 개별부 -->
+			<segment name="body200101" class="camel.example.beanio.message.Body200101">
+				<field name="OTP응답값" length="8" />
+				<field name="타기관사고회복여부" length="1" />
+				<field name="오류횟수" length="2" padding="0" justify="right" />
+				<field name="Offset" length="16" />
+				<field name="마지막인증성공일자" length="8" type="date" format="yyyyMMdd" />
+				<field name="마지막인증성공시간" length="6" type="time" format="HHmmss" />
+				<field name="마지막제출OTP응답값" length="8" />
+				<field name="예약" length="37" />
+			</segment>
+		</record>
+	</stream>
+
+	<!-- 인증 응답 메시지 -->
+	<stream name="Msg0210200101" format="fixedlength">
+		<record name="header" class="camel.example.beanio.message.Msg0210200101" minOccurs="1" maxOccurs="1">
+			<!-- 공통 정보부 -->
+			<segment name="header" template="header" class="camel.example.beanio.message.Header" />
+			<!-- 업무 공통부 -->
+			<segment name="bodyCommon" class="camel.example.beanio.message.BodyCommon">
+				<field name="OTP인증벤더코드" length="3" />
+				<field name="사용자식별코드" length="40" />
+				<field name="OTP일련번호" length="12" />
+			</segment>
+			<!-- 업무 개별부 -->
+			<segment name="body200101" class="camel.example.beanio.message.Body200101">
+				<field name="OTP응답값" length="8" />
+				<field name="타기관사고회복여부" length="1" />
+				<field name="오류횟수" length="2" padding="0" justify="right" />
+				<field name="Offset" length="16" />
+				<field name="마지막인증성공일자" length="8" type="date" format="yyyyMMdd" />
+				<field name="마지막인증성공시간" length="6" type="time" format="HHmmss" />
+				<field name="마지막제출OTP응답값" length="8" />
+				<field name="예약" length="37" />
+			</segment>
+		</record>
+	</stream>
+</beanio>
